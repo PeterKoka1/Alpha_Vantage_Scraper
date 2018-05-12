@@ -1,11 +1,7 @@
-import pickle
 import pandas as pd
-import os
-from os.path import exists
 import sys
 
 from alpha_vantage.timeseries import TimeSeries
-from alpha_vantage.foreignexchange import ForeignExchange
 
 """
 - Allow to scrape any source (fed rates, bonds, stocks, indices)
@@ -52,9 +48,6 @@ def alpha_vantage_pull():
     api_key = input('api key ')
     if api_key == '?':
         print_instructions()
-
-
-
     ts = TimeSeries(key=api_key, output_format='pandas')
     stock_scrape(ts, api_key)
 
