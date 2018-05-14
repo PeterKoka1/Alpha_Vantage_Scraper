@@ -1,3 +1,5 @@
+AlphaVantage (alphavantage.co) custom command-line csv scraper for stocks. Daily, Weekly, and Monthly queries return up to 20 years of historical data. The intraday time series typically spans the last 10-15 trading days
+
 ### Installation
 
 AVScraper.py requires [Python](https://www.python.org/downloads/release/python-364/) v3+ to run.
