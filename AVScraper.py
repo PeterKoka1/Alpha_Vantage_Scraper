@@ -134,13 +134,18 @@ def save_locally(df):
     if incorrect path is given, csv will save where AVScraper.py file resides
     """
     path_input = input("path and csv file name\n")
+    if path_input == '?':
+        print_instructions()
     path = path_input.split(' ')[0]
     file_name = path_input.split(' ')[1]
     df.to_csv("{path}{file_name}.csv".format(path=path, file_name=file_name))
+    print("Done :)")
 
 
 def see_preview(df):
     preview = input("'p' for preview, Enter to continue")
+    if preview == '?':
+        print_instructions()
     if preview == 'p':
         print(df.head())
     if preview == "":
@@ -148,7 +153,15 @@ def see_preview(df):
 
 
 def print_instructions():
-    print("Instructions")
+    print("api key: Enter your personal API key from alphavantage.co. For example, \nA123B456C789D123")
+    print("\nsingle stock (‘s’) or multiple (‘m’): If you want to query a single stock, enter 's', "
+          "if you want to query multiple stocks into a combined csv file, enter 'm'")
+    print("\nFor single - symbol, time period, data to keep: for example, 'AAPL adjusted_close OHLC'")
+    print("\nFor multiple - symbols: for example, 'AMZN AAPL FB'")
+    print("\n'p' for preview, Enter to continue: If you’d like to preview the dataframe formatted as a "
+          "Pandas DataFrame, enter ‘p’ before continuing, otherwise press Enter on your keyboard")
+    print("\npath and csv file name: Enter the path of directory where you’d like the program to save your csv file and the name of the file"
+          "For example, \n...\Documents\ AMZN_closing")
 
 
 def main():
