@@ -65,7 +65,7 @@ This API returns monthly adjusted time series (last trading day of each month, m
 Intraday query returns OHLCV data where the close values are the periods specified in the ‘interval’ prompt. Period options are ‘1min’, ‘5min’, ‘15min’, ‘30min’, ‘60min’.
 
 Enter the data to keep for your csv export:
-From the optional ‘O’ = open, ‘H’ = high, ‘L’ = low, ‘C’ = close, ‘A’ = adjusted close, ‘D’ = dividend amount, ‘S’ = split coefficient, enter data you’d like to keep (e.g., ‘OHL’ or ‘ohl’ will only return the open, high, and low data for the particular stock)
+From the optional ‘O’ = open, ‘H’ = high, ‘L’ = low, ‘C’ = close, ‘A’ = adjusted close, ‘D’ = dividend amount, ‘S’ = split coefficient, enter data you’d like to keep (e.g., ‘OHL’ or ‘ohl’ will only return the open, high, and low data for the particular stock). Enter 'all' if you'd like to keep the fetched data unaltered
 
 A typical query may look as follows: 
 ```sh
