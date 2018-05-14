@@ -3,47 +3,6 @@ import sys
 
 from alpha_vantage.timeseries import TimeSeries
 
-"""
-- Allow to scrape any source (fed rates, bonds, stocks, indices)
-- Allow update feature (while maintaining directory)
-- Allow for specifying directory
-- Output pandas dataframe
-
-STOCK:
-    - Required: symbol, time period, interval (only for time-series-intraday)
-    - Optional: datatype
-
-    TIME PARAMETER OPTIONS
-
-        - intraday: This API returns intraday time series (timestamp, open, high, low, close, volume)
-        of the equity specified, updated realtime.
-
-        - daily: This API returns daily time series (date, daily open, daily high, daily low, daily close,
-        daily volume) of the equity specified, covering up to 20 years of historical data
-
-        - daily_adjusted: This API returns daily time series (date, daily open, daily high, daily low,
-        daily close, daily volume, daily adjusted close, and split/dividend events) of the equity
-        specified, covering up to 20 years of historical data.
-
-        - weekly: This API returns weekly time series (last trading day of each week, weekly open,
-        weekly high, weekly low, weekly close, weekly volume) of the equity specified, covering up
-        to 20 years of historical data.
-
-        - weekly_adjusted: This API returns weekly adjusted time series (last trading day of each week,
-        weekly open, weekly high, weekly low, weekly close, weekly adjusted close, weekly volume,
-        weekly dividend) of the equity specified, covering up to 20 years of historical data.
-
-        - monthly: This API returns monthly time series (last trading day of each month, monthly open,
-        monthly high, monthly low, monthly close, monthly volume) of the equity specified,
-        covering up to 20 years of historical data.
-
-        - monthly_adjusted: This API returns monthly adjusted time series (last trading day of each
-        month, monthly open, monthly high, monthly low, monthly close, monthly adjusted close,
-        monthly volume, monthly dividend) of the equity specified, covering up to 20 years of
-        historical data.
-
-"""
-
 def alpha_vantage_pull():
     api_key = input('api key ')
     if api_key == '?':
@@ -53,7 +12,7 @@ def alpha_vantage_pull():
 
 
 def stock_scrape(ts, api_key):
-    single_vs_multiple = input("single stock ('s') or multiple stocks ('m'):")
+    single_vs_multiple = input("single stock ('s') or multiple stocks ('m')")
     if single_vs_multiple == 's':
         print("symbol, time period, data to keep"
               "\nexample: AAPL weekly_adjusted OCV")
@@ -145,7 +104,13 @@ def stock_scrape(ts, api_key):
 
 
 def keep_data(dataframe, data_to_keep):
-    if data_to_keep == '':
+    rename_cols = [
+        j.replace(" ", "_")
+        for i, j in enumerate(dataframe.columns)
+        ]
+    dataframe.columns = rename_cols
+    if data_to_keep == 'all':
+        see_preview(dataframe)
         return dataframe
     else:
         data = [i.lower() for i in list(data_to_keep)]
